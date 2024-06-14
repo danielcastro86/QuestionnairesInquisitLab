@@ -1,2 +1,0 @@
-date	time	group	subject	session	build	q1_lackInterest_response	q1_lackInterest_latency	q2_Hopelessness_response	q2_Hopelessness_latency	q3_Sleep_response	q3_Sleep_latency	q4_Fatigue_response	q4_Fatigue_latency	q5_Appetite_response	q5_Appetite_latency	q6_Failure_response	q6_Failure_latency	q7_Concentration_response	q7_Concentration_latency	q8_SlownessAgitation_response	q8_SlownessAgitation_latency	q9_SuicideRisk_response	q9_SuicideRisk_latency	
-2023-02-01	14:22:32	mddcont	uk0555rp	baseline	6.4.2	2	36619	1	36619	1	36619	2	36619	2	36619	0	53053	2	53053	2	53053	0	53053	

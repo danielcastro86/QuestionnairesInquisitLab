@@ -1,2 +1,0 @@
-date	time	group	subject	session	build	q1_lackInterest_response	q1_lackInterest_latency	q2_Hopelessness_response	q2_Hopelessness_latency	q3_Sleep_response	q3_Sleep_latency	q4_Fatigue_response	q4_Fatigue_latency	q5_Appetite_response	q5_Appetite_latency	q6_Failure_response	q6_Failure_latency	q7_Concentration_response	q7_Concentration_latency	q8_SlownessAgitation_response	q8_SlownessAgitation_latency	q9_SuicideRisk_response	q9_SuicideRisk_latency	
-2023-04-04	10:14:40	healthycont	pwm4199jn	session1	6.4.2	2	55252	1	55252	3	55252	3	55252	0	55252	0	51290	1	51290	1	51290	0	51290	

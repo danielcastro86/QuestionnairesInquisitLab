@@ -1,2 +1,0 @@
-date	time	group	subject	session	build	q1_lackInterest_response	q1_lackInterest_latency	q2_Hopelessness_response	q2_Hopelessness_latency	q3_Sleep_response	q3_Sleep_latency	q4_Fatigue_response	q4_Fatigue_latency	q5_Appetite_response	q5_Appetite_latency	q6_Failure_response	q6_Failure_latency	q7_Concentration_response	q7_Concentration_latency	q8_SlownessAgitation_response	q8_SlownessAgitation_latency	q9_SuicideRisk_response	q9_SuicideRisk_latency	
-2022-12-14	15:46:44	gadexp	val1371cm	session7	6.4.2	1	12095	0	12095	0	12095	1	12095	0	12095	0	8941	1	8941	0	8941	0	8941	
