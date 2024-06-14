@@ -1,0 +1,342 @@
+﻿<usermanual>
+___________________________________________________________________________________________________________________	
+
+									PATIENT HEALTH QUESTIONNAIRE-9 (PHQ-9)
+___________________________________________________________________________________________________________________
+
+Script Author: Daniel Castro (dcastro@ismai.pt) for Millisecond Software, LLC
+Date: 19-01-2021
+last updated:  19-1-2021 by D. Castro (dcastro@ismai.pt) for Millisecond Software, LLC
+
+___________________________________________________________________________________________________________________
+BACKGROUND INFO 	
+___________________________________________________________________________________________________________________
+This script implements the Portuguese version of the Patient Health Questionnaire - 9 (PHQ-9):
+
+ref @@@
+
+___________________________________________________________________________________________________________________
+OVERVIEW
+___________________________________________________________________________________________________________________	
+9-question multiple-choice self-report inventory 
+
+Note: by default, all questions require a response. To change, go to section QUESTIONS
+and follow instructions
+___________________________________________________________________________________________________________________	
+DURATION 
+___________________________________________________________________________________________________________________	
+the default set-up of the script takes appr. @ minutes to complete
+
+___________________________________________________________________________________________________________________	
+DATA FILE INFORMATION 
+___________________________________________________________________________________________________________________
+The default data stored in the data files are:
+
+(1) Raw data file: 'bdi_orig.iqdat' 
+
+date, time:						date and time script was run with the current group/subjectnumber 
+subject, group, session:	  		with the current subject/groupnumber/session id
+build:							the Inquisit build 
+
+q*_response:						response given (in assigned values: 0-3 with additional letters to reference response subcategories)
+q*_latency:						how much time the participant spent on the surveypage with this particular question
+									(the last time this particular surveypage was visited)
+
+(2) Summary data file: 'bdi_orig_summary*.iqdat' (a separate file for each participant)
+
+Computer Platform:				the platform the script was run on (win/mac/ios/android)
+Date:							date script was run
+Time:							time script was started
+Subject ID:						assigned subject id number
+Group ID:						assigned group id number
+Session ID:						Session ID (if repeated measure design)
+Script Duration:					time it took to run script (in ms)
+Script Completion:				0 = script was not completed (prematurely aborted); 
+								1 = script was completed (all conditions run)
+
+q1-
+q9:								the numeric score (minus the letter suffix) for each question
+
+totalscore_bdi:					the sum of all numeric scores (range: 0-@)
+assessment:						According to: http://en.wikipedia.org/wiki/Beck_Depression_Inventory
+									0–9: indicates absence of depression;
+									> 9: indicates Major Depression diagnose
+									 
+risk: 							response to question 9									
+___________________________________________________________________________________________________________________	
+INSTRUCTIONS 
+___________________________________________________________________________________________________________________	
+no instructions published in Beck et al (1961). The provided instructions can be easily edited
+under section Editable Parameters.
+
+___________________________________________________________________________________________________________________	
+EDITABLE CODE 
+___________________________________________________________________________________________________________________	
+check below for (relatively) easily editable parameters, stimuli, instructions etc. 
+Keep in mind that you can use this script as a template and therefore always "mess" with the entire code 
+to further customize your experiment.
+
+The parameters you can change are:
+
+/pageinstructions:			the instructions that appear at the top of each surveypage
+
+
+</usermanual>
+
+
+**************************************************************************************************************
+**************************************************************************************************************
+	EDITABLE PARAMETERS: change editable parameters here
+**************************************************************************************************************
+**************************************************************************************************************
+
+<parameters>
+/pageinstructions = "Durante os últimos 14 dias, em quantos foi afectado/a por algum dos seguintes problemas?"
+</parameters>
+
+
+**************************************************************************************************************
+								!!!REMAINING CODE: Customize after careful consideration only!!!
+**************************************************************************************************************
+
+
+**************************************************************************************************************
+**************************************************************************************************************
+	DEFAULTS
+**************************************************************************************************************
+**************************************************************************************************************
+script requires Inquisit 6.0.0.0 or higher
+
+<defaults>
+/canvasaspectratio = (16,9)
+/minimumversion = "6.0.0.0"
+/ fontstyle = ("Helvetica Neue", 3%, false, false, false, false, 2000, 1)
+/txbgcolor = white
+/ txcolor = black
+</defaults>
+
+*******************************************************************************************************************
+*******************************************************************************************************************
+	DATA: this section contains data file information
+*******************************************************************************************************************
+*******************************************************************************************************************
+
+********************
+Summary data
+********************
+
+<summarydata>
+/ columns = (computer.platform, expressions.task, script.startdate, script.starttime, script.subjectid, script.groupid, script.sessionid, 
+script.elapsedtime, script.completed, expressions.q1, expressions.q2, expressions.q3, expressions.q4, expressions.q5, 
+expressions.q6, expressions.q7,expressions.q8, expressions.q9, expressions.totalscore_phq9, expressions.assessment, expressions.risk)
+</summarydata>
+
+
+
+*******************************************************************************************************************
+*******************************************************************************************************************
+	EXPRESSIONS
+*******************************************************************************************************************
+*******************************************************************************************************************
+/q1-
+/q9:				the numeric score (minus the letter suffix) for each question
+
+/totalscore_BDI:	the sum of all numeric scores (range 0-63)
+/assessment:		According to: http://en.wikipedia.org/wiki/Beck_Depression_Inventory
+					0–9: indicates minimal depression;
+					10–18: indicates mild depression;
+					19–29: indicates moderate depression; 
+					0–63: indicates severe depression. 
+					Higher total scores indicate more severe depressive symptoms.
+
+
+<expressions>
+/q1 = substring(radiobuttons.q1_lackInterest.response, 0, 1)
+/q2 = substring(radiobuttons.q2_Hopelessness.response, 0, 1)
+/q3 = substring(radiobuttons.q3_Sleep.response, 0, 1)
+/q4 = substring(radiobuttons.q4_Fatigue.response, 0, 1)
+/q5 = substring(radiobuttons.q5_Appetite.response, 0, 1)
+/q6 = substring(radiobuttons.q6_Failure.response, 0, 1)
+/q7 = substring(radiobuttons.q7_Concentration.response, 0, 1)
+/q8 = substring(radiobuttons.q8_SlownessAgitation.response, 0, 1)
+/q9 = substring(radiobuttons.q9_SuicideRisk.response, 0, 1)
+
+
+/totalscore_PHQ9 = expressions.q1 + expressions.q2 + expressions.q3 + expressions.q4 + expressions.q5 +
+expressions.q6 + expressions.q7 + expressions.q8 + expressions.q9 
+
+/assessment = if (expressions.totalscore_phq9 < 9) "undiagnosed"
+else if (expressions.totalscore_phq9 >= 9) "major depression"
+
+/risk = expressions.q9
+/task = "PHQ9"
+</expressions>
+
+*******************************************************************************************************************
+*******************************************************************************************************************
+	QUESTIONS
+*******************************************************************************************************************
+*******************************************************************************************************************
+Note: by default all questions are required to be answered. To change
+/required = false
+
+<radiobuttons q1_lackInterest>
+/caption = "1. Tive pouco interesse ou prazer em fazer coisas"
+/ options = ("Nunca", 
+"Em vários dias", 
+"Em mais de metade do número de dias", 
+"Em quase todos os dias")
+/ optionvalues = ("0", "1", "2", "3")
+/required = true
+/orientation = horizontal
+</radiobuttons>
+
+<radiobuttons q2_Hopelessness>
+/caption = "2. Senti desânimo, desalento ou falta de esperança"
+/ options = ("Nunca", 
+"Em vários dias", 
+"Em mais de metade do número de dias", 
+"Em quase todos os dias")
+/ optionvalues = ("0", "1", "2", "3")
+/required = true
+/orientation = horizontal
+</radiobuttons>
+
+<radiobuttons q3_Sleep>
+/caption = "3. Tive dificuldade em adormecer ou em dormir sem interrupções, ou dormi demais"
+/ options = ("Nunca", 
+"Em vários dias", 
+"Em mais de metade do número de dias", 
+"Em quase todos os dias")
+/ optionvalues = ("0", "1", "2", "3")
+/required = true
+/orientation = horizontal
+</radiobuttons>
+
+<radiobuttons q4_Fatigue>
+/caption = "4. Senti cansaço ou falta de energia"
+/ options = ("Nunca", 
+"Em vários dias", 
+"Em mais de metade do número de dias", 
+"Em quase todos os dias")
+/ optionvalues = ("0", "1", "2", "3")
+/required = true
+/orientation = horizontal
+</radiobuttons>
+
+<radiobuttons q5_Appetite>
+/caption = "5. Tive falta ou excesso de apetite"
+/ options = ("Nunca", 
+"Em vários dias", 
+"Em mais de metade do número de dias", 
+"Em quase todos os dias")
+/ optionvalues = ("0", "1", "2", "3")
+/required = true
+/orientation = horizontal
+</radiobuttons>
+
+<radiobuttons q6_Failure>
+/caption = "6. Senti que não gosto de mim próprio/a — ou que sou um/uma falhado/a ou me desiludi a mim próprio/a ou à minha família"
+/ options = ("Nunca", 
+"Em vários dias", 
+"Em mais de metade do número de dias", 
+"Em quase todos os dias")
+/ optionvalues = ("0", "1", "2", "3")
+/required = true
+/orientation = horizontal
+</radiobuttons>
+
+<radiobuttons q7_Concentration>
+/caption = "7. Tive dificuldade em concentrar-me nas coisas, como ao ler o jornal ou ver televisão"
+/ options = ("Nunca", 
+"Em vários dias", 
+"Em mais de metade do número de dias", 
+"Em quase todos os dias")
+/ optionvalues = ("0", "1", "2", "3")
+/required = true
+/orientation = horizontal
+</radiobuttons>
+
+<radiobuttons q8_SlownessAgitation>
+/caption = "8. Movimentei-me ou falei tão lentamente que outras pessoas poderão ter notado. Ou o oposto: estive agitado/a a ponto de andar de um lado para o outro muito mais do que é habitual"
+/ options = ("Nunca", 
+"Em vários dias", 
+"Em mais de metade do número de dias", 
+"Em quase todos os dias")
+/ optionvalues = ("0", "1", "2", "3")
+/required = true
+/orientation = horizontal
+</radiobuttons>
+
+<radiobuttons q9_SuicideRisk>
+/caption = "9. Pensei que seria melhor estar morto/a, ou em magoar-me a mim próprio/a de alguma forma"
+/ options = ("Nunca", 
+"Em vários dias", 
+"Em mais de metade do número de dias", 
+"Em quase todos os dias")
+/ optionvalues = ("0", "1", "2", "3")
+/required = true
+/orientation = horizontal
+</radiobuttons>
+
+
+
+*******************************************************************************************************************
+*******************************************************************************************************************
+	SURVEYPAGES
+*******************************************************************************************************************
+*******************************************************************************************************************
+<surveypage PHQ1>
+/caption ="<%parameters.pageinstructions%>"
+/subcaption = " "
+/questions = [1 = q1_lackInterest, q2_Hopelessness, q3_Sleep, q4_Fatigue, q5_Appetite]
+</surveypage>
+
+<surveypage PHQ2>
+/caption ="<%parameters.pageinstructions%>"
+/subcaption = " "
+/questions = [1 = q6_Failure, q7_Concentration, q8_SlownessAgitation, q9_SuicideRisk]
+</surveypage>
+
+
+
+
+</surveypage>
+
+*******************************************************************************************************************
+*******************************************************************************************************************
+	SURVEY
+*******************************************************************************************************************
+*******************************************************************************************************************
+Notes:
+- presents the surveypages
+- to take pictures of each screen set /screencapture = true
+
+
+<survey PHQ9_orig>
+/pages = [
+	1 = PHQ1; 
+	2 = PHQ2;  
+	
+]
+/screencapture = false
+/ fontstyle = ("Helvetica Neue", 3%, false, false, true, false, 5, 0)
+/subcaptionfontstyle = ("Helvetica Neue", 1.67%, false, false, true, false, 5, 0)
+/itemfontstyle = ("Helvetica Neue", 2.5%, true, false, false, false, 5, 1)
+/responsefontstyle = ("Helvetica Neue", 2.5%, false, false, false, false, 5, 1)
+/ txcolor = black
+/showpagenumbers = false
+/showquestionnumbers = false
+/ navigationbuttonfontstyle = ("Helvetica Neue", 3%, false, false, false, false, 5, 1)
+/ navigationbuttonsize = (15%, 5%)
+/ backbuttonposition = (65%, 95%)
+/ nextbuttonposition = (80%, 95%)
+/ finishlabel = "Concluir"
+/ backlabel = "Retroceder"
+/ nextlabel = "Continuar"
+</survey>
+
+
+*******************************************************************************************************************
+												End of File
+*******************************************************************************************************************

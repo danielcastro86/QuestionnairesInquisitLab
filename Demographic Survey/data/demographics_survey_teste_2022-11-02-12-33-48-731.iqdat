@@ -1,0 +1,2 @@
+date	time	group	subject	session	build	sex_response	sex_latency	age_response	age_latency	estadocivil_response	estadocivil_latency	escolaridade_response	escolaridade_latency	profissão_response	profissão_latency	medicação_response	medicação_latency	consulta_response	consulta_latency	
+2022-11-02	12:33:48	teste	teste	teste	6.4.2	Masculino	27837	23	27837	Solteiro/a	27837	Ensino universitário	27837	Estudante	27837	Não	27837	Sim	27837	

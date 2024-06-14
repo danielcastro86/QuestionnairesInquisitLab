@@ -1,0 +1,784 @@
+﻿<usermanual>
+___________________________________________________________________________________________________________________	
+
+									REGULATION OF EMOTION SYSTEMS SURVEY (RESS)
+___________________________________________________________________________________________________________________
+
+Script Author: Daniel Castro (dcastro@ismai.pt) for Millisecond Software, LLC
+Date: 19-01-2021
+last updated:  19-01-2021 by D. Castro (dcastro@ismai.pt) for Millisecond Software, LLC
+
+___________________________________________________________________________________________________________________
+BACKGROUND INFO 	
+___________________________________________________________________________________________________________________
+This script implements the Portuguese version of the Regulation of Emotion Systems Survey (RESS):
+
+ref @@@
+
+___________________________________________________________________________________________________________________
+OVERVIEW
+___________________________________________________________________________________________________________________	
+38-question multiple-choice self-report inventory 
+
+Note: by default, all questions require a response. To change, go to section QUESTIONS
+and follow instructions
+___________________________________________________________________________________________________________________	
+DURATION 
+___________________________________________________________________________________________________________________	
+the default set-up of the script takes appr. @ minutes to complete
+
+___________________________________________________________________________________________________________________	
+DATA FILE INFORMATION 
+___________________________________________________________________________________________________________________
+The default data stored in the data files are:
+
+(1) Raw data file: 'ress_orig.iqdat' 
+
+date, time:						date and time script was run with the current group/subjectnumber 
+subject, group, session:	  		with the current subject/groupnumber/session id
+build:							the Inquisit build 
+
+q*_response:						response given (in assigned values: 0-3 with additional letters to reference response subcategories)
+q*_latency:						how much time the participant spent on the surveypage with this particular question
+									(the last time this particular surveypage was visited)
+
+(2) Summary data file: 'ress_summary*.iqdat' (a separate file for each participant)
+
+Computer Platform:				the platform the script was run on (win/mac/ios/android)
+Date:							date script was run
+Time:							time script was started
+Subject ID:						assigned subject id number
+Group ID:						assigned group id number
+Session ID:						Session ID (if repeated measure design)
+Script Duration:					time it took to run script (in ms)
+Script Completion:				0 = script was not completed (prematurely aborted); 
+								1 = script was completed (all conditions run)
+
+q1-
+q38:								the numeric score (minus the letter suffix) for each question
+
+scale scores
+rumination:					the sum of questions 1, 10, 17, 28, 33, 34  (range: 0-@)
+engagement:					the sum of questions 2, 4, 5, 7, 11, 16, 19, 23 (range: 0-@)
+suppression: 				the sum of question 3, 12, 15, 25, 26, 31, 32, 35 (range: 0-@)
+relaxation:					the sum of questions 6, 8, 27, 30 (range: 0-@)
+distraction:				the sum of questions 9, 13, 22, 29 (range: 0-@)
+reappraisal:				the sum of questions 14, 18, 20, 21, 24, 36, 37, 38 (range: 0-@)
+							
+___________________________________________________________________________________________________________________	
+INSTRUCTIONS 
+___________________________________________________________________________________________________________________	
+
+
+___________________________________________________________________________________________________________________	
+EDITABLE CODE 
+___________________________________________________________________________________________________________________	
+check below for (relatively) easily editable parameters, stimuli, instructions etc. 
+Keep in mind that you can use this script as a template and therefore always "mess" with the entire code 
+to further customize your experiment.
+
+The parameters you can change are:
+
+/pageinstructions:			the instructions that appear at the top of each surveypage
+
+
+</usermanual>
+
+
+**************************************************************************************************************
+**************************************************************************************************************
+	EDITABLE PARAMETERS: change editable parameters here
+**************************************************************************************************************
+**************************************************************************************************************
+
+<parameters>
+
+/pageinstructions = "No momento em que sinto uma emoção negativa, a minha resposta imediata costuma ser..."
+
+</parameters>
+
+
+**************************************************************************************************************
+								!!!REMAINING CODE: Customize after careful consideration only!!!
+**************************************************************************************************************
+
+
+**************************************************************************************************************
+**************************************************************************************************************
+	DEFAULTS
+**************************************************************************************************************
+**************************************************************************************************************
+script requires Inquisit 6.0.0.0 or higher
+
+<defaults>
+/canvasaspectratio = (16,9)
+/minimumversion = "6.0.0.0"
+/ fontstyle = ("Arial", 3%, false, false, false, false, 5, 1)
+/txbgcolor = white
+/ txcolor = black
+</defaults>
+
+*******************************************************************************************************************
+*******************************************************************************************************************
+	DATA: this section contains data file information
+*******************************************************************************************************************
+*******************************************************************************************************************
+
+********************
+Summary data
+********************
+
+<summarydata>
+/ columns = (computer.platform, expressions.task, script.startdate, script.starttime, script.subjectid, script.groupid, script.sessionid, 
+script.elapsedtime, script.completed, expressions.q1, expressions.q2, expressions.q3, expressions.q4, expressions.q5, 
+expressions.q6, expressions.q7, expressions.q8, expressions.q9, expressions.q10,  expressions.q11,  expressions.q12,
+expressions.q13, expressions.q14, expressions.q15, expressions.q16,  expressions.q17, expressions.q18, expressions.q19,
+expressions.q20, expressions.q21, expressions.q22, expressions.q23, expressions.q24, expressions.q25, expressions.q26,
+expressions.q27,  expressions.q28,  expressions.q29,  expressions.q30, expressions.q31, expressions.q32, expressions.q33,
+expressions.q34, expressions.q35, expressions.q36, expressions.q37, expressions.q38, expressions.rumination, 
+expressions.engagement, expressions.suppression, expressions.relaxation, expressions.distraction, expressions.reappraisal)
+</summarydata>
+
+
+
+*******************************************************************************************************************
+*******************************************************************************************************************
+	EXPRESSIONS
+*******************************************************************************************************************
+*******************************************************************************************************************
+/q1-
+/q9:				the numeric score (minus the letter suffix) for each question
+
+/totalscore_BDI:	the sum of all numeric scores (range 0-63)
+/assessment:		
+
+
+<expressions>
+/task = "RESS"
+/q1 = substring(radiobuttons.q1.response, 0, 1)
+/q2 = substring(radiobuttons.q2.response, 0, 1)
+/q3 = substring(radiobuttons.q3.response, 0, 1)
+/q4 = substring(radiobuttons.q4.response, 0, 1)
+/q5 = substring(radiobuttons.q5.response, 0, 1)
+/q6 = substring(radiobuttons.q6.response, 0, 1)
+/q7 = substring(radiobuttons.q7.response, 0, 1)
+/q8 = substring(radiobuttons.q8.response, 0, 1)
+/q9 = substring(radiobuttons.q9.response, 0, 1)
+/q10 = substring(radiobuttons.q10.response, 0, 1)
+/q11 = substring(radiobuttons.q11.response, 0, 1)
+/q12 = substring(radiobuttons.q12.response, 0, 1)
+/q13 = substring(radiobuttons.q13.response, 0, 1)
+/q14 = substring(radiobuttons.q14.response, 0, 1)
+/q15 = substring(radiobuttons.q15.response, 0, 1)
+/q16 = substring(radiobuttons.q16.response, 0, 1)
+/q17 = substring(radiobuttons.q17.response, 0, 1)
+/q18 = substring(radiobuttons.q18.response, 0, 1)
+/q19 = substring(radiobuttons.q19.response, 0, 1)
+/q20 = substring(radiobuttons.q20.response, 0, 1)
+/q21 = substring(radiobuttons.q21.response, 0, 1)
+/q22 = substring(radiobuttons.q22.response, 0, 1)
+/q23 = substring(radiobuttons.q23.response, 0, 1)
+/q24 = substring(radiobuttons.q24.response, 0, 1)
+/q25 = substring(radiobuttons.q25.response, 0, 1)
+/q26 = substring(radiobuttons.q26.response, 0, 1)
+/q27 = substring(radiobuttons.q27.response, 0, 1)
+/q28 = substring(radiobuttons.q28.response, 0, 1)
+/q29 = substring(radiobuttons.q29.response, 0, 1)
+/q30 = substring(radiobuttons.q30.response, 0, 1)
+/q31 = substring(radiobuttons.q31.response, 0, 1)
+/q32 = substring(radiobuttons.q32.response, 0, 1)
+/q33 = substring(radiobuttons.q33.response, 0, 1)
+/q34 = substring(radiobuttons.q34.response, 0, 1)
+/q35 = substring(radiobuttons.q35.response, 0, 1)
+/q36 = substring(radiobuttons.q36.response, 0, 1)
+/q37 = substring(radiobuttons.q37.response, 0, 1)
+/q38 = substring(radiobuttons.q38.response, 0, 1)
+
+
+/rumination = expressions.q1 + expressions.q10 + expressions.q17 + expressions.q28 + expressions.q33 +
+expressions.q34
+
+/engagement = expressions.q2 + expressions.q4 + expressions.q5 + expressions.q7 + expressions.q11 + 
+expressions.q16 + expressions.q19 + expressions.q23 
+
+/suppression = expressions.q3 + expressions.q12 + expressions.q15 + expressions.q25 + expressions.q26 + 
+expressions.q31 + expressions.q32 + expressions.q35
+
+/relaxation =  expressions.q6 + expressions.q8 + expressions.q27 + expressions.q30 
+
+/distraction = expressions.q9 + expressions.q13 + expressions.q22 + expressions.q29 
+
+/reappraisal = expressions.q14 + expressions.q18 + expressions.q20 + expressions.q21 + expressions.q24 + 
+expressions.q36 + expressions.q37 + expressions.q38
+
+</expressions>
+
+*******************************************************************************************************************
+*******************************************************************************************************************
+	QUESTIONS
+*******************************************************************************************************************
+*******************************************************************************************************************
+Note: by default all questions are required to be answered. To change
+/required = false
+
+<radiobuttons q1>
+/caption = "1. Pensar repetidamente sobre o que me está a incomodar."
+/ options = ("Nunca", 
+"Algumas vezes", 
+"Metade das vezes", 
+"A maior parte das vezes",
+"Sempre")
+/ optionvalues = ("1", "2", "3", "4", "5")
+/required = true
+/orientation = horizontal
+</radiobuttons>
+
+<radiobuttons q2>
+/caption = "2. Usar expressões faciais para mostrar que estou chateado/a."
+/ options = ("Nunca", 
+"Algumas vezes", 
+"Metade das vezes", 
+"A maior parte das vezes",
+"Sempre")
+/ optionvalues = ("1", "2", "3", "4", "5")
+/required = true
+/orientation = horizontal
+</radiobuttons>
+
+<radiobuttons q3>
+/caption = "3. Agir como se não estivesse chateado/a."
+/ options = ("Nunca", 
+"Algumas vezes", 
+"Metade das vezes", 
+"A maior parte das vezes",
+"Sempre")
+/ optionvalues = ("1", "2", "3", "4", "5")
+/required = true
+/orientation = horizontal
+</radiobuttons>
+
+<radiobuttons q4>
+/caption = "4. Deixar transparecer as minhas emoções."
+/ options = ("Nunca", 
+"Algumas vezes", 
+"Metade das vezes", 
+"A maior parte das vezes",
+"Sempre")
+/ optionvalues = ("1", "2", "3", "4", "5")
+/required = true
+/orientation = horizontal
+</radiobuttons>
+
+<radiobuttons q5>
+/caption = "5. Verbalizar como me estou a sentir."
+/ options = ("Nunca", 
+"Algumas vezes", 
+"Metade das vezes", 
+"A maior parte das vezes",
+"Sempre")
+/ optionvalues = ("1", "2", "3", "4", "5")
+/required = true
+/orientation = horizontal
+</radiobuttons>
+
+<radiobuttons q6>
+/caption = "6. Focar-me na minha respiração e em diminuir o meu batimento cardíaco."
+/ options = ("Nunca", 
+"Algumas vezes", 
+"Metade das vezes", 
+"A maior parte das vezes",
+"Sempre")
+/ optionvalues = ("1", "2", "3", "4", "5")
+/required = true
+/orientation = horizontal
+</radiobuttons>
+
+<radiobuttons q7>
+/caption = "7. Mostrar os meus sentimentos."
+/ options = ("Nunca", 
+"Algumas vezes", 
+"Metade das vezes", 
+"A maior parte das vezes",
+"Sempre")
+/ optionvalues = ("1", "2", "3", "4", "5")
+/required = true
+/orientation = horizontal
+</radiobuttons>
+
+<radiobuttons q8>
+/caption = "8. Tentar respirar fundo e diminuir o meu batimento cardíaco."
+/ options = ("Nunca", 
+"Algumas vezes", 
+"Metade das vezes", 
+"A maior parte das vezes",
+"Sempre")
+/ optionvalues = ("1", "2", "3", "4", "5")
+/required = true
+/orientation = horizontal
+</radiobuttons>
+
+<radiobuttons q9>
+/caption = "9. Começar imediatamente a fazer alguma coisa para me manter ocupado/a."
+/ options = ("Nunca", 
+"Algumas vezes", 
+"Metade das vezes", 
+"A maior parte das vezes",
+"Sempre")
+/ optionvalues = ("1", "2", "3", "4", "5")
+/required = true
+/orientation = horizontal
+</radiobuttons>
+
+<radiobuttons q10>
+/caption = "10. Pensar continuamente sobre o que me está a incomodar."
+/ options = ("Nunca", 
+"Algumas vezes", 
+"Metade das vezes", 
+"A maior parte das vezes",
+"Sempre")
+/ optionvalues = ("1", "2", "3", "4", "5")
+/required = true
+/orientation = horizontal
+</radiobuttons>
+
+<radiobuttons q11>
+/caption = "11. Mostrar abertamente o que estou a sentir."
+/ options = ("Nunca", 
+"Algumas vezes", 
+"Metade das vezes", 
+"A maior parte das vezes",
+"Sempre")
+/ optionvalues = ("1", "2", "3", "4", "5")
+/required = true
+/orientation = horizontal
+</radiobuttons>
+
+<radiobuttons q12>
+/caption = "12. Certificar-me que ninguém nota o que estou a sentir."
+/ options = ("Nunca", 
+"Algumas vezes", 
+"Metade das vezes", 
+"A maior parte das vezes",
+"Sempre")
+/ optionvalues = ("1", "2", "3", "4", "5")
+/required = true
+/orientation = horizontal
+</radiobuttons>
+
+<radiobuttons q13>
+/caption = "13. Fazer outra coisa qualquer para me distrair."
+/ options = ("Nunca", 
+"Algumas vezes", 
+"Metade das vezes", 
+"A maior parte das vezes",
+"Sempre")
+/ optionvalues = ("1", "2", "3", "4", "5")
+/required = true
+/orientation = horizontal
+</radiobuttons>
+
+<radiobuttons q14>
+/caption = "14. Tentar ver o evento emocional de uma perspetiva diferente."
+/ options = ("Nunca", 
+"Algumas vezes", 
+"Metade das vezes", 
+"A maior parte das vezes",
+"Sempre")
+/ optionvalues = ("1", "2", "3", "4", "5")
+/required = true
+/orientation = horizontal
+</radiobuttons>
+
+<radiobuttons q15>
+/caption = "15. Fingir que não estou chateado/a."
+/ options = ("Nunca", 
+"Algumas vezes", 
+"Metade das vezes", 
+"A maior parte das vezes",
+"Sempre")
+/ optionvalues = ("1", "2", "3", "4", "5")
+/required = true
+/orientation = horizontal
+</radiobuttons>
+
+<radiobuttons q16>
+/caption = "16. Dizer a outros exatamente o que estou a sentir."
+/ options = ("Nunca", 
+"Algumas vezes", 
+"Metade das vezes", 
+"A maior parte das vezes",
+"Sempre")
+/ optionvalues = ("1", "2", "3", "4", "5")
+/required = true
+/orientation = horizontal
+</radiobuttons>
+
+<radiobuttons q17>
+/caption = "17. Passar repetidamente pelo evento emocional na minha cabeça."
+/ options = ("Nunca", 
+"Algumas vezes", 
+"Metade das vezes", 
+"A maior parte das vezes",
+"Sempre")
+/ optionvalues = ("1", "2", "3", "4", "5")
+/required = true
+/orientation = horizontal
+</radiobuttons>
+
+<radiobuttons q18>
+/caption = "18. Ver o evento emocional de uma perspetiva diferente."
+/ options = ("Nunca", 
+"Algumas vezes", 
+"Metade das vezes", 
+"A maior parte das vezes",
+"Sempre")
+/ optionvalues = ("1", "2", "3", "4", "5")
+/required = true
+/orientation = horizontal
+</radiobuttons>
+
+<radiobuttons q19>
+/caption = "19. Expressar os meus sentimentos."
+/ options = ("Nunca", 
+"Algumas vezes", 
+"Metade das vezes", 
+"A maior parte das vezes",
+"Sempre")
+/ optionvalues = ("1", "2", "3", "4", "5")
+/required = true
+/orientation = horizontal
+</radiobuttons>
+
+<radiobuttons q20>
+/caption = "20. Identificar perspetivas diferentes sobre a situação. "
+/ options = ("Nunca", 
+"Algumas vezes", 
+"Metade das vezes", 
+"A maior parte das vezes",
+"Sempre")
+/ optionvalues = ("1", "2", "3", "4", "5")
+/required = true
+/orientation = horizontal
+</radiobuttons>
+
+<radiobuttons q21>
+/caption = "21. Pensar noutras formas de interpretar a situação."
+/ options = ("Nunca", 
+"Algumas vezes", 
+"Metade das vezes", 
+"A maior parte das vezes",
+"Sempre")
+/ optionvalues = ("1", "2", "3", "4", "5")
+/required = true
+/orientation = horizontal
+</radiobuttons>
+
+<radiobuttons q22>
+/caption = "22. Usar expressões faciais para mostrar que estou chateado/a."
+/ options = ("Nunca", 
+"Algumas vezes", 
+"Metade das vezes", 
+"A maior parte das vezes",
+"Sempre")
+/ optionvalues = ("1", "2", "3", "4", "5")
+/required = true
+/orientation = horizontal
+</radiobuttons>
+
+<radiobuttons q23>
+/caption = "23. Mostrar que estou chateado/a."
+/ options = ("Nunca", 
+"Algumas vezes", 
+"Metade das vezes", 
+"A maior parte das vezes",
+"Sempre")
+/ optionvalues = ("1", "2", "3", "4", "5")
+/required = true
+/orientation = horizontal
+</radiobuttons>
+
+<radiobuttons q24>
+/caption = "24. Olhar para a situação de várias perspetivas diferentes."
+/ options = ("Nunca", 
+"Algumas vezes", 
+"Metade das vezes", 
+"A maior parte das vezes",
+"Sempre")
+/ optionvalues = ("1", "2", "3", "4", "5")
+/required = true
+/orientation = horizontal
+</radiobuttons>
+
+<radiobuttons q25>
+/caption = "25. Esconder os meus sentimentos."
+/ options = ("Nunca", 
+"Algumas vezes", 
+"Metade das vezes", 
+"A maior parte das vezes",
+"Sempre")
+/ optionvalues = ("1", "2", "3", "4", "5")
+/required = true
+/orientation = horizontal
+</radiobuttons>
+
+<radiobuttons q26>
+/caption = "26. Certificar-me que consigo esconder o que estou a sentir."
+/ options = ("Nunca", 
+"Algumas vezes", 
+"Metade das vezes", 
+"A maior parte das vezes",
+"Sempre")
+/ optionvalues = ("1", "2", "3", "4", "5")
+/required = true
+/orientation = horizontal
+</radiobuttons>
+
+<radiobuttons q27>
+/caption = "27. Respirar fundo."
+/ options = ("Nunca", 
+"Algumas vezes", 
+"Metade das vezes", 
+"A maior parte das vezes",
+"Sempre")
+/ optionvalues = ("1", "2", "3", "4", "5")
+/required = true
+/orientation = horizontal
+</radiobuttons>
+
+<radiobuttons q28>
+/caption = "28. Tentar continuamente decidir o que correu mal."
+/ options = ("Nunca", 
+"Algumas vezes", 
+"Metade das vezes", 
+"A maior parte das vezes",
+"Sempre")
+/ optionvalues = ("1", "2", "3", "4", "5")
+/required = true
+/orientation = horizontal
+</radiobuttons>
+
+<radiobuttons q29>
+/caption = "29. Envolver-me em atividades que me distraiam."
+/ options = ("Nunca", 
+"Algumas vezes", 
+"Metade das vezes", 
+"A maior parte das vezes",
+"Sempre")
+/ optionvalues = ("1", "2", "3", "4", "5")
+/required = true
+/orientation = horizontal
+</radiobuttons>
+
+<radiobuttons q30>
+/caption = "30. Diminuir a tensão no meu corpo."
+/ options = ("Nunca", 
+"Algumas vezes", 
+"Metade das vezes", 
+"A maior parte das vezes",
+"Sempre")
+/ optionvalues = ("1", "2", "3", "4", "5")
+/required = true
+/orientation = horizontal
+</radiobuttons>
+
+<radiobuttons q31>
+/caption = "31. Fazer um esforço para esconder os meus sentimentos."
+/ options = ("Nunca", 
+"Algumas vezes", 
+"Metade das vezes", 
+"A maior parte das vezes",
+"Sempre")
+/ optionvalues = ("1", "2", "3", "4", "5")
+/required = true
+/orientation = horizontal
+</radiobuttons>
+
+<radiobuttons q32>
+/caption = "32. Esconder o que estou a sentir."
+/ options = ("Nunca", 
+"Algumas vezes", 
+"Metade das vezes", 
+"A maior parte das vezes",
+"Sempre")
+/ optionvalues = ("1", "2", "3", "4", "5")
+/required = true
+/orientation = horizontal
+</radiobuttons>
+
+<radiobuttons q33>
+/caption = "33. Pensar repetidamente sobre o evento emocional."
+/ options = ("Nunca", 
+"Algumas vezes", 
+"Metade das vezes", 
+"A maior parte das vezes",
+"Sempre")
+/ optionvalues = ("1", "2", "3", "4", "5")
+/required = true
+/orientation = horizontal
+</radiobuttons>
+
+<radiobuttons q34>
+/caption = "34. Pensar repetidamente sobre o que correu mal."
+/ options = ("Nunca", 
+"Algumas vezes", 
+"Metade das vezes", 
+"A maior parte das vezes",
+"Sempre")
+/ optionvalues = ("1", "2", "3", "4", "5")
+/required = true
+/orientation = horizontal
+</radiobuttons>
+
+<radiobuttons q35>
+/caption = "35. Tentar fingir que não estou chateado/a."
+/ options = ("Nunca", 
+"Algumas vezes", 
+"Metade das vezes", 
+"A maior parte das vezes",
+"Sempre")
+/ optionvalues = ("1", "2", "3", "4", "5")
+/required = true
+/orientation = horizontal
+</radiobuttons>
+
+<radiobuttons q36>
+/caption = "36. Pensar em formas alternativas de ver a situação."
+/ options = ("Nunca", 
+"Algumas vezes", 
+"Metade das vezes", 
+"A maior parte das vezes",
+"Sempre")
+/ optionvalues = ("1", "2", "3", "4", "5")
+/required = true
+/orientation = horizontal
+</radiobuttons>
+
+<radiobuttons q37>
+/caption = "37. Tentar pensar no evento emocional de uma forma mais positiva."
+/ options = ("Nunca", 
+"Algumas vezes", 
+"Metade das vezes", 
+"A maior parte das vezes",
+"Sempre")
+/ optionvalues = ("1", "2", "3", "4", "5")
+/required = true
+/orientation = horizontal
+</radiobuttons>
+
+<radiobuttons q38>
+/caption = "38. Tentar ver a situação de uma forma mais positiva."
+/ options = ("Nunca", 
+"Algumas vezes", 
+"Metade das vezes", 
+"A maior parte das vezes",
+"Sempre")
+/ optionvalues = ("1", "2", "3", "4", "5")
+/required = true
+/orientation = horizontal
+</radiobuttons>
+
+
+*******************************************************************************************************************
+*******************************************************************************************************************
+	SURVEYPAGES
+*******************************************************************************************************************
+*******************************************************************************************************************
+<surveypage INTRO>
+/caption ="Por favor indique como é que costuma reagir às emoções negativas no momento em que elas surgem.
+Não escolha as suas respostas em função do que acha que deveria fazer ou gostaria de fazer. Em vez disso, pense cuidadosamente nas suas respostas e indique a opção que melhor descreve o que realmente faz.
+
+Por favor responda a todos os itens. Não existem respostas “certas” ou “erradas”. 
+
+Por isso, indique a opção que melhor se aplica a si e não o que acha que a maioria das pessoas diria ou faria. Para cada uma das afirmações seguintes, assinale com um círculo o número que melhor indica a frequência com que costuma fazer as coisas descritas em reação a uma emoção negativa como, por exemplo, a raiva, a tristeza ou o stress.
+"
+/subcaption = " "
+</surveypage>
+
+<surveypage RESS1>
+/caption ="<%parameters.pageinstructions%>"
+/subcaption = " "
+/questions = [1 = q1, q2, q3, q4, q5, q6]
+</surveypage>
+
+<surveypage RESS2>
+/caption ="<%parameters.pageinstructions%>"
+/subcaption = " "
+/questions = [1 = q7, q8, q9, q10, q11, q12]
+</surveypage>
+
+<surveypage RESS3>
+/caption ="<%parameters.pageinstructions%>"
+/subcaption = " "
+/questions = [1 = q13, q14, q15, q16, q17, q18]
+</surveypage>
+
+<surveypage RESS4>
+/caption ="<%parameters.pageinstructions%>"
+/subcaption = " "
+/questions = [1 = q19, q20, q21, q22, q23, q24]
+</surveypage>
+
+<surveypage RESS5>
+/caption ="<%parameters.pageinstructions%>"
+/subcaption = " "
+/questions = [1 = q25, q26, q27, q28, q29, q30]
+</surveypage>
+
+<surveypage RESS6>
+/caption ="<%parameters.pageinstructions%>"
+/subcaption = " "
+/questions = [1 = q31, q32, q33, q34, q35, q36]
+</surveypage>
+
+<surveypage RESS7>
+/caption ="<%parameters.pageinstructions%>"
+/subcaption = " "
+/questions = [1 = q37, q38]
+</surveypage>
+
+</surveypage>
+
+*******************************************************************************************************************
+*******************************************************************************************************************
+	SURVEY
+*******************************************************************************************************************
+*******************************************************************************************************************
+Notes:
+- presents the surveypages
+- to take pictures of each screen set /screencapture = true
+
+
+<survey RESS_orig>
+/pages = [
+	1 = INTRO;
+	2 = RESS1; 
+	3 = RESS2; 
+	4 = RESS3; 
+	5 = RESS4;  
+	6 = RESS5;
+	7 = RESS6;
+	8 = RESS7;
+	
+]
+/screencapture = false
+/ fontstyle = ("Helvetica Neue", 3%, false, false, false, false, 5, 0)
+/subcaptionfontstyle = ("Helvetica Neue", 1.67%, false, false, false, false, 5, 0)
+/itemfontstyle = ("Helvetica Neue", 2.5%, true, false, false, false, 5, 1)
+/responsefontstyle = ("Helvetica Neue", 2.5%, false, false, false, false, 5, 1)
+/ txcolor = black
+/showpagenumbers = false
+/showquestionnumbers = false
+/ navigationbuttonfontstyle = ("Helvetica Neue", 3%, false, false, false, false, 5, 1)
+/ navigationbuttonsize = (15%, 5%)
+/ backbuttonposition = (65%, 95%)
+/ nextbuttonposition = (80%, 95%)
+/ finishlabel = "Concluir"
+/ backlabel = "Retroceder"
+/ nextlabel = "Continuar"
+
+</survey>
+
+
+*******************************************************************************************************************
+												End of File
+*******************************************************************************************************************

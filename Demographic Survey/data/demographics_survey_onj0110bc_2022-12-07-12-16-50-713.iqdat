@@ -1,0 +1,2 @@
+date	time	group	subject	session	build	sex_response	sex_latency	age_response	age_latency	estadocivil_response	estadocivil_latency	escolaridade_response	escolaridade_latency	profissão_response	profissão_latency	medicação_response	medicação_latency	consulta_response	consulta_latency	
+2022-12-07	12:16:50	assessment	onj0110bc	screening	6.4.2	Masculino	495406	26	495406	Solteiro/a	495406	Ensino universitário	495406	Desempregado/a	495406	Não	495406	Sim	495406	

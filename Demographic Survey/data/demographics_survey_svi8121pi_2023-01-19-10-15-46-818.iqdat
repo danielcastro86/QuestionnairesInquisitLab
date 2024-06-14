@@ -1,0 +1,2 @@
+date	time	group	subject	session	build	sex_response	sex_latency	age_response	age_latency	estadocivil_response	estadocivil_latency	escolaridade_response	escolaridade_latency	profissão_response	profissão_latency	medicação_response	medicação_latency	consulta_response	consulta_latency	
+2023-01-19	10:15:46	assessment	svi8121pi	screening	6.4.2	Masculino	29703	18	29703	Solteiro/a	29703	Ensino universitário	29703	Estudante	29703	Não	29703	Não	29703	

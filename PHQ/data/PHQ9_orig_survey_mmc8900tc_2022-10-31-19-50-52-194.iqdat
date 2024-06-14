@@ -1,0 +1,2 @@
+date	time	group	subject	session	build	q1_lackInterest_response	q1_lackInterest_latency	q2_Hopelessness_response	q2_Hopelessness_latency	q3_Sleep_response	q3_Sleep_latency	q4_Fatigue_response	q4_Fatigue_latency	q5_Appetite_response	q5_Appetite_latency	q6_Failure_response	q6_Failure_latency	q7_Concentration_response	q7_Concentration_latency	q8_SlownessAgitation_response	q8_SlownessAgitation_latency	q9_SuicideRisk_response	q9_SuicideRisk_latency	
+2022-10-31	19:50:52	gadexp	mmc8900tc	session3	6.4.2	1	15417	1	15417	1	15417	1	15417	0	15417	0	11888	1	11888	0	11888	0	11888	

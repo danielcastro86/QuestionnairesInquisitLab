@@ -1,0 +1,313 @@
+﻿<usermanual>
+___________________________________________________________________________________________________________________	
+
+									GENERALIZED ANXIETY DISORDER - 7 (GAD-7)
+___________________________________________________________________________________________________________________
+
+Script Author: Daniel Castro (dcastro@ismai.pt) for Millisecond Software, LLC
+Date: 19-01-2021
+last updated:  19-01-2021 by D. Castro (dcastro@ismai.pt) for Millisecond Software, LLC
+
+___________________________________________________________________________________________________________________
+BACKGROUND INFO 	
+___________________________________________________________________________________________________________________
+This script implements the Portuguese version of the Generalized Anxiety Disorder - 7 (GAD-7):
+
+ref @@@
+
+___________________________________________________________________________________________________________________
+OVERVIEW
+___________________________________________________________________________________________________________________	
+7-question multiple-choice self-report inventory 
+
+Note: by default, all questions require a response. To change, go to section QUESTIONS
+and follow instructions
+___________________________________________________________________________________________________________________	
+DURATION 
+___________________________________________________________________________________________________________________	
+the default set-up of the script takes appr. @ minutes to complete
+
+___________________________________________________________________________________________________________________	
+DATA FILE INFORMATION 
+___________________________________________________________________________________________________________________
+The default data stored in the data files are:
+
+(1) Raw data file: 'gad_orig.iqdat' 
+
+date, time:						date and time script was run with the current group/subjectnumber 
+subject, group, session:	  		with the current subject/groupnumber/session id
+build:							the Inquisit build 
+
+q*_response:						response given (in assigned values: 0-3 with additional letters to reference response subcategories)
+q*_latency:						how much time the participant spent on the surveypage with this particular question
+									(the last time this particular surveypage was visited)
+
+(2) Summary data file: 'gad_summary*.iqdat' (a separate file for each participant)
+
+Computer Platform:				the platform the script was run on (win/mac/ios/android)
+Date:							date script was run
+Time:							time script was started
+Subject ID:						assigned subject id number
+Group ID:						assigned group id number
+Session ID:						Session ID (if repeated measure design)
+Script Duration:					time it took to run script (in ms)
+Script Completion:				0 = script was not completed (prematurely aborted); 
+								1 = script was completed (all conditions run)
+
+q1-
+q7:								the numeric score (minus the letter suffix) for each question
+
+totalscore_bdi:					the sum of all numeric scores (range: 0-@)
+assessment:						According to: http://en.wikipedia.org/wiki/Beck_Depression_Inventory
+									0–8: indicates absence of generalized disorder;
+									> 8: indicates Generalized Anxiety Disorder diagnose
+									 
+risk: 							response to question 9									
+___________________________________________________________________________________________________________________	
+INSTRUCTIONS 
+___________________________________________________________________________________________________________________	
+
+
+___________________________________________________________________________________________________________________	
+EDITABLE CODE 
+___________________________________________________________________________________________________________________	
+check below for (relatively) easily editable parameters, stimuli, instructions etc. 
+Keep in mind that you can use this script as a template and therefore always "mess" with the entire code 
+to further customize your experiment.
+
+The parameters you can change are:
+
+/pageinstructions:			the instructions that appear at the top of each surveypage
+
+
+</usermanual>
+
+**************************************************************************************************************
+**************************************************************************************************************
+	EDITABLE PARAMETERS: change editable parameters here
+**************************************************************************************************************
+**************************************************************************************************************
+
+<parameters>
+/pageinstructions = "Durante os últimos 14 dias, em quantos foi afectado/a pelos seguintes problemas?"
+</parameters>
+
+
+**************************************************************************************************************
+								!!!REMAINING CODE: Customize after careful consideration only!!!
+**************************************************************************************************************
+
+
+**************************************************************************************************************
+**************************************************************************************************************
+	DEFAULTS
+**************************************************************************************************************
+**************************************************************************************************************
+script requires Inquisit 6.0.0.0 or higher
+
+<defaults>
+/canvasaspectratio = (16,9)
+/minimumversion = "6.0.0.0"
+/ fontstyle = ("Arial", 3%, false, false, false, false, 5, 1)
+/txbgcolor = white
+/ txcolor = black
+</defaults>
+
+*******************************************************************************************************************
+*******************************************************************************************************************
+	DATA: this section contains data file information
+*******************************************************************************************************************
+*******************************************************************************************************************
+
+********************
+Summary data
+********************
+
+<summarydata>
+/ columns = (computer.platform, expressions.task, script.startdate, script.starttime, script.subjectid, script.groupid, script.sessionid, 
+script.elapsedtime, script.completed, expressions.q1, expressions.q2, expressions.q3, expressions.q4, expressions.q5, 
+expressions.q6, expressions.q7, expressions.totalscore_gad7, expressions.assessment)
+</summarydata>
+
+
+
+*******************************************************************************************************************
+*******************************************************************************************************************
+	EXPRESSIONS
+*******************************************************************************************************************
+*******************************************************************************************************************
+/q1-
+/q9:				the numeric score (minus the letter suffix) for each question
+
+/totalscore_BDI:	the sum of all numeric scores (range 0-63)
+/assessment:		
+
+
+<expressions>
+/q1 = substring(radiobuttons.q1_nervous.response, 0, 1)
+/q2 = substring(radiobuttons.q2_controlworry.response, 0, 1)
+/q3 = substring(radiobuttons.q3_difthingsworry.response, 0, 1)
+/q4 = substring(radiobuttons.q4_relax.response, 0, 1)
+/q5 = substring(radiobuttons.q5_restless.response, 0, 1)
+/q6 = substring(radiobuttons.q6_irritability.response, 0, 1)
+/q7 = substring(radiobuttons.q7_afraid.response, 0, 1)
+
+
+
+/totalscore_gad7 = expressions.q1 + expressions.q2 + expressions.q3 + expressions.q4 + expressions.q5 +
+expressions.q6 + expressions.q7
+
+/assessment = if (expressions.totalscore_gad7 < 8) "undiagnosed"
+else if (expressions.totalscore_gad7 >= 8) "generalized anxiety disorder"
+
+/task = "GAD7"
+
+</expressions>
+
+*******************************************************************************************************************
+*******************************************************************************************************************
+	QUESTIONS
+*******************************************************************************************************************
+*******************************************************************************************************************
+Note: by default all questions are required to be answered. To change
+/required = false
+
+<radiobuttons q1_nervous>
+/caption = "1. Senti-me nervoso/a, ansioso/a ou irritado/a"
+/ options = ("Nunca", 
+"Em vários dias", 
+"Em mais de metade do número de dias", 
+"Em quase todos os dias")
+/ optionvalues = ("0", "1", "2", "3")
+/required = true
+/orientation = horizontal
+</radiobuttons>
+
+<radiobuttons q2_controlworry>
+/caption = "2. Fui incapaz de parar de me preocupar ou de controlar as preocupações"
+/ options = ("Nunca", 
+"Em vários dias", 
+"Em mais de metade do número de dias", 
+"Em quase todos os dias")
+/ optionvalues = ("0", "1", "2", "3")
+/required = true
+/orientation = horizontal
+</radiobuttons>
+
+<radiobuttons q3_difthingsworry>
+/caption = "3. Preocupei-me demais com diferentes assuntos"
+/ options = ("Nunca", 
+"Em vários dias", 
+"Em mais de metade do número de dias", 
+"Em quase todos os dias")
+/ optionvalues = ("0", "1", "2", "3")
+/required = true
+/orientation = horizontal
+</radiobuttons>
+
+<radiobuttons q4_relax>
+/caption = "4. Tive dificuldade em relaxar"
+/ options = ("Nunca", 
+"Em vários dias", 
+"Em mais de metade do número de dias", 
+"Em quase todos os dias")
+/ optionvalues = ("0", "1", "2", "3")
+/required = true
+/orientation = horizontal
+</radiobuttons>
+
+<radiobuttons q5_restless>
+/caption = "5. Estive tão inquieto/a que era difícil ficar sossegado/a"
+/ options = ("Nunca", 
+"Em vários dias", 
+"Em mais de metade do número de dias", 
+"Em quase todos os dias")
+/ optionvalues = ("0", "1", "2", "3")
+/required = true
+/orientation = horizontal
+</radiobuttons>
+
+<radiobuttons q6_irritability>
+/caption = "6. Estive facilmente incomodado/a ou irritável"
+/ options = ("Nunca", 
+"Em vários dias", 
+"Em mais de metade do número de dias", 
+"Em quase todos os dias")
+/ optionvalues = ("0", "1", "2", "3")
+/required = true
+/orientation = horizontal
+</radiobuttons>
+
+<radiobuttons q7_afraid>
+/caption = "7. Senti receio, como se algo terrível pudesse acontecer"
+/ options = ("Nunca", 
+"Em vários dias", 
+"Em mais de metade do número de dias", 
+"Em quase todos os dias")
+/ optionvalues = ("0", "1", "2", "3")
+/required = true
+/orientation = horizontal
+</radiobuttons>
+
+
+
+*******************************************************************************************************************
+*******************************************************************************************************************
+	SURVEYPAGES
+*******************************************************************************************************************
+*******************************************************************************************************************
+<surveypage GAD1>
+/caption ="<%parameters.pageinstructions%>"
+/subcaption = " "
+/questions = [1 = q1_nervous, q2_controlworry, q3_difthingsworry, q4_relax]
+</surveypage>
+
+<surveypage GAD2>
+/caption ="<%parameters.pageinstructions%>"
+/subcaption = " "
+/questions = [1 = q5_restless, q6_irritability, q7_afraid]
+</surveypage>
+
+
+
+
+
+</surveypage>
+
+*******************************************************************************************************************
+*******************************************************************************************************************
+	SURVEY
+*******************************************************************************************************************
+*******************************************************************************************************************
+Notes:
+- presents the surveypages
+- to take pictures of each screen set /screencapture = true
+
+
+<survey GAD7_orig>
+/pages = [
+	1 = GAD1; 
+	2 = GAD2;  
+	
+]
+/screencapture = false
+/ fontstyle = ("Helvetica Neue", 3%, false, false, true, false, 5, 0)
+/subcaptionfontstyle = ("Helvetica Neue", 1.67%, false, false, true, false, 5, 0)
+/itemfontstyle = ("Helvetica Neue", 2.5%, true, false, false, false, 5, 1)
+/responsefontstyle = ("Helvetica Neue", 2.5%, false, false, false, false, 5, 1)
+/ txcolor = black
+/showpagenumbers = false
+/showquestionnumbers = false
+/ navigationbuttonfontstyle = ("Helvetica Neue", 3%, false, false, false, false, 5, 1)
+/ navigationbuttonsize = (15%, 5%)
+/ backbuttonposition = (65%, 95%)
+/ nextbuttonposition = (80%, 95%)
+/ finishlabel = "Concluir"
+/ backlabel = "Retroceder"
+/ nextlabel = "Continuar"
+</survey>
+
+
+*******************************************************************************************************************
+												End of File
+*******************************************************************************************************************

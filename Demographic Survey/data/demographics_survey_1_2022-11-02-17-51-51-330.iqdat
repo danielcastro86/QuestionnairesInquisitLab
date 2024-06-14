@@ -1,0 +1,2 @@
+date	time	group	subject	session	build	sex_response	sex_latency	age_response	age_latency	estadocivil_response	estadocivil_latency	escolaridade_response	escolaridade_latency	profissão_response	profissão_latency	medicação_response	medicação_latency	consulta_response	consulta_latency
+2022-11-02	17:51:51	1	1	1	6.6.1	Feminino	29133	23	29133	Solteiro/a	29133	Ensino universitário	29133	Estudante	29133	Não	29133	Sim	29133

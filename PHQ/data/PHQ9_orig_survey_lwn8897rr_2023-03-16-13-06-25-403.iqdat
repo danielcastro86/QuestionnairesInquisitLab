@@ -1,0 +1,2 @@
+date	time	group	subject	session	build	q1_lackInterest_response	q1_lackInterest_latency	q2_Hopelessness_response	q2_Hopelessness_latency	q3_Sleep_response	q3_Sleep_latency	q4_Fatigue_response	q4_Fatigue_latency	q5_Appetite_response	q5_Appetite_latency	q6_Failure_response	q6_Failure_latency	q7_Concentration_response	q7_Concentration_latency	q8_SlownessAgitation_response	q8_SlownessAgitation_latency	q9_SuicideRisk_response	q9_SuicideRisk_latency	
+2023-03-16	13:06:25	mddcont	lwn8897rr	followup	6.4.2	3	30555	1	30555	0	30555	3	30555	3	30555	0	23247	3	23247	2	23247	0	23247	

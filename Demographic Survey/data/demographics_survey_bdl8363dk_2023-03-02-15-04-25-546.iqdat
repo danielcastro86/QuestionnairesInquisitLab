@@ -1,0 +1,2 @@
+date	time	group	subject	session	build	sex_response	sex_latency	age_response	age_latency	estadocivil_response	estadocivil_latency	escolaridade_response	escolaridade_latency	profissão_response	profissão_latency	medicação_response	medicação_latency	consulta_response	consulta_latency	
+2023-03-02	15:04:25	assessment	bdl8363dk	screening	6.4.2	Feminino	94266	52	94266	Divorciado/a	94266	Ensino universitário	94266	Desempregado/a	94266	Sim	94266	Sim	94266	

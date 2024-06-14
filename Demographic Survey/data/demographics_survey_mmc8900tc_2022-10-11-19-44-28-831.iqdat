@@ -1,0 +1,2 @@
+date	time	group	subject	session	build	sex_response	sex_latency	age_response	age_latency	estadocivil_response	estadocivil_latency	escolaridade_response	escolaridade_latency	profissão_response	profissão_latency	medicação_response	medicação_latency	consulta_response	consulta_latency	
+2022-10-11	20:44:28	assessment	mmc8900tc	screening	6.4.2	Masculino	231924	30	231924	Solteiro/a	231924	Ensino universitário	231924	Empregado/a	231924	Não	231924	Sim	231924	

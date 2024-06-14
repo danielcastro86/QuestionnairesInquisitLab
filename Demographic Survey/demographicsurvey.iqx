@@ -1,0 +1,79 @@
+﻿<dropdown sex>
+/ caption = "Género"
+/ options = ("Feminino", "Masculino")
+</dropdown>
+
+<textbox age>
+/ caption = "Idade"
+/ mask = positiveinteger
+/ range = (7, 110)
+</textbox>
+
+<dropdown estadocivil>
+/ caption = "Estado civil"
+/ options = ("Casado/a", "Solteiro/a", "Divorciado/a", "Viúvo/a")
+</dropdown>
+
+<dropdown escolaridade>
+/ caption = "Nível de escolaridade"
+/ options = ("Ensino básico 1º ciclo", "Ensino básico 2º ciclo ", "Ensino básico 3º ciclo ", "Ensino secundário", "Ensino universitário")
+</dropdown>
+
+<dropdown profissão>
+/ caption = "Situação profissional"
+/ options = ("Estudante", "Empregado/a", "Desempregado/a", "Reformado/a", "Outro")
+</dropdown>
+
+<radiobuttons medicação>
+/ caption = "Medicação psiquiátrica"
+/ options = ("Sim", "Não")
+</radiobuttons>
+
+<radiobuttons consulta>
+/ caption = "Consultas prévias de psicologia"
+/ options = ("Sim", "Não")
+</radiobuttons>
+
+<surveypage demographics1>
+/ caption = "Por favor responda às seguintes questões demográficas"
+/ fontstyle = ("Verdana", -16, true, false, false, false, 5, 0)
+/ questions = [1=sex; 2=age; 3=estadocivil; 4=escolaridade; 5=profissão; 6=medicação; 7=consulta] 
+</surveypage>
+
+<survey demographics>
+/ pages = [1=demographics1]
+/ responsefontstyle = ("Verdana", -12, false, false, false, false, 5, 0)
+/ itemfontstyle = ("Verdana", -13, false, false, false, false, 5, 0)
+/ itemspacing = 2%
+/ showpagenumbers = false
+</survey>
+
+<expressions>
+/task = "demographic data"
+</expressions>
+
+<summarydata>
+/ columns = (expressions.task, dropdown.sex.response, textbox.age.response, dropdown.estadocivil.response, dropdown.profissão.response, dropdown.escolaridade.response, radiobuttons.consulta.response, radiobuttons.medicação.response)
+</summarydata>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
