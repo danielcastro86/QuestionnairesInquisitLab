@@ -1,5 +1,5 @@
 
-# Project Title
+# InquisitLab Questionnaires
 
 This project contains a collection of surveys and assessments used for a specific study. The contents include demographic information and several psychological assessments. Below is a brief description of each component.
 
@@ -21,19 +21,17 @@ This project contains a collection of surveys and assessments used for a specifi
 
 1. **Demographic Survey**:
    - This folder contains all the necessary documents and data related to the demographic survey.
-   - Files in this folder include demographic questions and collected data.
 
 2. **GAD**:
    - This folder includes the Generalized Anxiety Disorder (GAD) assessment materials.
-   - Files in this folder might include assessment forms, scoring guidelines, and collected responses.
 
 3. **PHQ**:
    - This folder includes the Patient Health Questionnaire (PHQ) assessment materials.
-   - Files in this folder might include assessment forms, scoring guidelines, and collected responses.
+   - Files in this folder might include assessment forms, scoring guidelines.
 
 4. **RESS**:
    - This folder includes the RESS assessment materials.
-   - Files in this folder might include assessment forms, scoring guidelines, and collected responses.
+   - Files in this folder might include assessment forms, scoring guidelines
 
 ## File Descriptions
 
